@@ -1,0 +1,61 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: sonarr
+  labels:
+    app: sonarr
+    part-of: sonarr
+  annotations:
+    keel.sh/policy: force
+    keel.sh/trigger: poll
+    keel.sh/pollSchedule: "@hourly"
+    keel.sh/match-tag: true
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sonarr
+      part-of: sonarr
+  template:
+    metadata:
+      labels:
+        app: sonarr
+        part-of: sonarr
+    spec:
+      containers:
+      - name: sonarr
+        image: ghcr.io/linuxserver/sonarr:latest
+        ports:
+        - name: sonarr
+          containerPort: 8989
+        env:
+        - name: PUID
+          value: "1000"
+        - name: PGID
+          value: "1000"
+        - name: TZ
+          value: "Europe/Paris"
+        - name: UMASK
+          value: "022"
+        volumeMounts:
+        - name: sonarr
+          mountPath: /config
+        - name: series
+          mountPath: /series
+        - name: animes
+          mountPath: /animes
+        - name: downloads
+          mountPath: /downloads/series
+      volumes:
+      - name: sonarr
+        persistentVolumeClaim:
+          claimName: sonarr
+      - name: series
+        persistentVolumeClaim:
+          claimName: series
+      - name: animes
+        persistentVolumeClaim:
+          claimName: animes
+      - name: downloads
+        persistentVolumeClaim:
+          claimName: downloads
