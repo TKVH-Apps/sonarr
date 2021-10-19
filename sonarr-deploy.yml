@@ -46,6 +46,11 @@ spec:
           mountPath: /animes
         - name: downloads
           mountPath: /downloads/series
+        resources:
+          limits:
+            memory: 256Mi
+          requests:
+            memory: 128Mi
       volumes:
       - name: sonarr
         persistentVolumeClaim:
