@@ -51,6 +51,16 @@ spec:
             memory: 128Mi
           requests:
             memory: 64Mi
+        readinessProbe:
+          tcpSocket:
+            port: sonarr
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        livenessProbe:
+          tcpSocket:
+            port: sonarr
+          initialDelaySeconds: 15
+          periodSeconds: 20
       volumes:
       - name: sonarr
         persistentVolumeClaim:
