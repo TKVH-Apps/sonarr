@@ -6,3 +6,4 @@ resources:
   - sonarr-svc.yml
   - sonarr-pvc.yml
   - sonarr-ing.yml
+  - sonarr-ns.yml
