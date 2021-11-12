@@ -50,7 +50,7 @@ spec:
           limits:
             memory: 256Mi
           requests:
-            memory: 200Mi
+            memory: 230Mi
         readinessProbe:
           tcpSocket:
             port: sonarr
