@@ -5,11 +5,6 @@ metadata:
   labels:
     app: sonarr
     part-of: sonarr
-  annotations:
-    keel.sh/policy: force
-    keel.sh/trigger: poll
-    keel.sh/pollSchedule: "@hourly"
-    keel.sh/match-tag: true
 spec:
   replicas: 1
   selector:
@@ -24,7 +19,7 @@ spec:
     spec:
       containers:
       - name: sonarr
-        image: ghcr.io/linuxserver/sonarr:latest
+        image: ghcr.io/linuxserver/sonarr:3.0.6
         ports:
         - name: sonarr
           containerPort: 8989
