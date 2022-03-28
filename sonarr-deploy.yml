@@ -43,9 +43,9 @@ spec:
           mountPath: /downloads/series
         resources:
           limits:
-            memory: 256Mi
+            memory: 200Mi
           requests:
-            memory: 230Mi
+            memory: 150Mi
         readinessProbe:
           tcpSocket:
             port: sonarr
